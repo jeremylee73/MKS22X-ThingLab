@@ -1,9 +1,25 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class thing extends PApplet {
+
 interface Displayable {
-  void display();
+  public void display();
 }
 
 interface Moveable {
-  void move();
+  public void move();
 }
 
 abstract class Thing implements Displayable {
@@ -13,7 +29,7 @@ abstract class Thing implements Displayable {
     this.x = x;
     this.y = y;
   }
-  abstract void display();
+  public abstract void display();
 }
 
 class Rock extends Thing {
@@ -21,7 +37,7 @@ class Rock extends Thing {
     super(x, y);
   }
 
-  void display() {
+  public void display() {
           fill(255);
           rect(x, y, 10, 10);
   }
@@ -31,7 +47,7 @@ public class LivingRock extends Rock implements Moveable {
   LivingRock(float x, float y) {
     super(x, y);
   }
-  void move() {
+  public void move() {
     /* ONE PERSON WRITE THIS */
   }
 }
@@ -42,12 +58,11 @@ class Ball extends Thing implements Moveable {
     super(x, y);
   }
 
-  void display() {
-          fill(255);
-          circle(x, y, 20);
+  public void display() {
+    /* ONE PERSON WRITE THIS */
   }
 
-  void move() {
+  public void move() {
     /* ONE PERSON WRITE THIS */
   }
 }
@@ -57,8 +72,8 @@ class Ball extends Thing implements Moveable {
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
 
-void setup() {
-  size(1000, 800);
+public void setup() {
+  
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
@@ -75,7 +90,7 @@ void setup() {
     thingsToMove.add(m);
   }
 }
-void draw() {
+public void draw() {
   background(255);
 
   for (Displayable thing : thingsToDisplay) {
@@ -83,5 +98,15 @@ void draw() {
   }
   for (Moveable thing : thingsToMove) {
     thing.move();
+  }
+}
+  public void settings() {  size(1000, 800); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "thing" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
   }
 }

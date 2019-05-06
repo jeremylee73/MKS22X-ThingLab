@@ -1,3 +1,5 @@
+import java.util.Random;
+
 interface Displayable {
   void display();
 }
@@ -27,12 +29,20 @@ class Rock extends Thing {
   }
 }
 
-public class LivingRock extends Rock implements Moveable {
+class LivingRock extends Rock implements Moveable {
   LivingRock(float x, float y) {
     super(x, y);
   }
+  
   void move() {
-    /* ONE PERSON WRITE THIS */
+    /* ONE PERSON WRITE THIS - Kevin Li */
+    super.x += randgen(-20, 20);
+    super.y += randgen(-20, 20);
+  }
+  
+  int randgen(int min, int max) {
+    Random r = new Random();
+    return r.nextInt((max - min) + 1) + min;
   }
 }
 

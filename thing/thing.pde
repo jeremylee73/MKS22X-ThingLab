@@ -22,7 +22,8 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    PImage rock = loadImage("rock.png");
+    image(rock,x,y, width/10, height/10);
   }
 }
 

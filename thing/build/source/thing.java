@@ -59,7 +59,8 @@ class Ball extends Thing implements Moveable {
   }
 
   public void display() {
-    /* ONE PERSON WRITE THIS */
+          fill(255);
+          circle(x, y, 20);
   }
 
   public void move() {

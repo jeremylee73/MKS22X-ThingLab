@@ -8,7 +8,7 @@ interface Moveable {
   void move();
 }
 
-PImage ROCK;
+PImage[] rocks;
 
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
@@ -21,12 +21,16 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
+
+  PImage rock;
+
   Rock(float x, float y) {
     super(x, y);
+    rock = rocks[(int) Math.floor(Math.random() * 2)];
   }
 
   void display() {
-    image(ROCK, x, y, width/10, height/10);
+    image(rock, x, y, width/10, height/10);
   }
 }
 
@@ -63,7 +67,7 @@ class Ball extends Thing implements Moveable {
 
   void display() {
     fill(r, g, b);
-    circle(x, y, 20);
+    ellipse(x, y, 20, 20);
   }
 
   void move() {
@@ -89,10 +93,9 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-  PImage[] rocks = new PImage[2];
+  rocks = new PImage[2];
   rocks[0] = loadImage("rock.png");
   rocks[1] = loadImage("rock2.png");
-  ROCK = rocks[(int) Math.floor(Math.random() * 2)];
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();

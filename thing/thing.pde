@@ -34,13 +34,13 @@ class LivingRock extends Rock implements Moveable {
   LivingRock(float x, float y) {
     super(x, y);
   }
-  
+
   void move() {
     /* ONE PERSON WRITE THIS - Kevin Li */
     super.x += randgen(-20, 20);
     super.y += randgen(-20, 20);
   }
-  
+
   int randgen(int min, int max) {
     Random r = new Random();
     return r.nextInt((max - min) + 1) + min;
@@ -59,7 +59,7 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    y = y + 5;
   }
 }
 

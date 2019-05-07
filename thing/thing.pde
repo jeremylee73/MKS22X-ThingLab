@@ -49,9 +49,22 @@ class LivingRock extends Rock implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS - Kevin Li */
-    super.x += randgen(-20, 20);
-    super.y += randgen(-20, 20);
+    /* ONE PERSON WRITE THIS - Kevin */
+    if (super.x <= 30) 
+      super.x += 20;
+    else if (super.x >= width - 30)
+      super.x -= 20;
+      
+    if (super.y <= 30)
+      super.y += 20;
+    else if (super.y >= height - 30)
+      super.y -= 20;
+      
+    if (Math.random() < 0.5)
+      super.x += randgen(-10, 10);
+      
+    else if (Math.random() >= 0.5)
+      super.y += randgen(-10, 10);
   }
 
   int randgen(int min, int max) {

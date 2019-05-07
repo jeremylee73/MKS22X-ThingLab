@@ -65,6 +65,24 @@ class LivingRock extends Rock implements Moveable {
     ellipse(this.x + 40, this.y + 40, 20, 20);
     ellipse(this.x + 65, this.y + 65, 20, 20);
   }
+  
+  /* :p forgot that this keeps refreshing, maybe this can be handy in the future? 
+  void eyeColorPicker() {
+    double rng = Math.random();
+    
+    if (rng < 0.25)
+      fill(40, 26, 13); //brown
+      
+    else if (rng >= 0.25 && rng < 0.5)
+      fill(85.5, 56.9, 0); //hazel
+      
+    else if (rng >= 0.5 && rng < 0.75)
+      fill(0, 96, 255); //blue, kinda
+      
+    else if (rng >= 0.75 && rng < 1)
+      fill(0, 179, 44); //green, kinda
+  }
+  */
 }
 
 class Ball extends Thing implements Moveable {

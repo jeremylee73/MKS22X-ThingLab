@@ -89,7 +89,10 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-  ROCK = loadImage("rock.png");
+  PImage[] rocks = new PImage[2];
+  rocks[0] = loadImage("rock.png");
+  rocks[1] = loadImage("rock2.png");
+  ROCK = rocks[(int) Math.floor(Math.random() * 2)];
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();

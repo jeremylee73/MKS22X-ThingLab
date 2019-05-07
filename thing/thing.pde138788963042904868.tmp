@@ -61,7 +61,6 @@ class LivingRock extends Rock implements Moveable {
   
   void display() {
     super.display();
-    fill(255);
     ellipse(this.x + 40, this.y + 40, 20, 20);
     ellipse(this.x + 65, this.y + 65, 20, 20);
   }

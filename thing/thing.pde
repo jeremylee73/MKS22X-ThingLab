@@ -48,18 +48,37 @@ class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  Ball(float x, float y) {
+  
+  float vx, vy;
+  float r, g, b;
 
+  Ball(float x, float y) {
     super(x, y);
+    vy = 0;
+    vx = random(-10, 10);
+    r = random(0, 255);
+    g = random(0, 255);
+    b = random(0, 255);
   }
 
   void display() {
-          fill(255);
-          circle(x, y, 20);
+    fill(r, g, b);
+    circle(x, y, 20);
   }
 
   void move() {
-    y = y + 5;
+    y += vy;
+    x += vx;
+
+    if (y > height) {
+      y = height;
+      vy = -Math.abs(vy)*0.9;
+    } else {
+      vy += 2;
+    }
+
+    if (x > width) vx = -Math.abs(vx);
+    if (x < 0) vx = Math.abs(vx);
   }
 }
 

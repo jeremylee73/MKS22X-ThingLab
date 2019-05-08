@@ -44,8 +44,26 @@ class Rock extends Thing {
 }
 
 class LivingRock extends Rock implements Moveable {
+
+  int[] eyecolor;
+
   LivingRock(float x, float y) {
     super(x, y);
+
+    double rng = Math.random();
+    
+    if (rng < 0.25)
+      eyecolor = new int[] {40, 26, 13}; //brown
+      
+    else if (rng >= 0.25 && rng < 0.5)
+      eyecolor = new int[] {85, 56, 0}; //hazel
+      
+    else if (rng >= 0.5 && rng < 0.75)
+      eyecolor = new int[] {0, 96, 255}; //blue, kinda
+      
+    else if (rng >= 0.75 && rng < 1)
+      eyecolor = new int[] {0, 179, 44}; //green, kinda
+
   }
 
   void move() {
@@ -61,9 +79,10 @@ class LivingRock extends Rock implements Moveable {
       super.y -= 20;
       
     if (Math.random() < 0.5)
-      super.x += randgen(-10, 10);
+      super.x += random(-10, 10);
       
     else if (Math.random() >= 0.5)
+<<<<<<< HEAD
       super.y += randgen(-10, 10);
     
     for (Thing c : thingsToCollide) {
@@ -77,32 +96,20 @@ class LivingRock extends Rock implements Moveable {
   int randgen(int min, int max) {
     Random r = new Random();
     return r.nextInt((max - min) + 1) + min;
+=======
+      super.y += random(-10, 10);
+>>>>>>> 46404c603e45425e7f624c894eaf8109ba663089
   }
   
   void display() {
     super.display();
     fill(255);
-    ellipse(this.x + 40, this.y + 40, 20, 20);
-    ellipse(this.x + 65, this.y + 65, 20, 20);
+    ellipse(this.x-15, this.y-10, 20, 20);
+    ellipse(this.x+15, this.y-10, 20, 20);
+    fill(eyecolor[0], eyecolor[1], eyecolor[2]);
+    ellipse(this.x-15, this.y-10, 10, 10);
+    ellipse(this.x+15, this.y-10, 10, 10);
   }
-  
-  /* :p forgot that this keeps refreshing, maybe this can be handy in the future? 
-  void eyeColorPicker() {
-    double rng = Math.random();
-    
-    if (rng < 0.25)
-      fill(40, 26, 13); //brown
-      
-    else if (rng >= 0.25 && rng < 0.5)
-      fill(85.5, 56.9, 0); //hazel
-      
-    else if (rng >= 0.5 && rng < 0.75)
-      fill(0, 96, 255); //blue, kinda
-      
-    else if (rng >= 0.75 && rng < 1)
-      fill(0, 179, 44); //green, kinda
-  }
-  */
 }
 
 class Ball extends Thing implements Moveable {

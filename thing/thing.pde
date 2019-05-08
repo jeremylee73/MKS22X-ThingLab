@@ -8,13 +8,13 @@ interface Moveable {
   void move();
 }
 
-interface Collidable {
+interface Collideable {
   boolean isTouching(Thing other);
 }
 
 PImage[] rocks;
 
-abstract class Thing implements Displayable, Collidable {
+abstract class Thing implements Displayable, Collideable {
   float x, y, radius; //Position of the Thing, radius of intersection
 
   Thing(float x, float y, float radius) {
@@ -65,6 +65,13 @@ class LivingRock extends Rock implements Moveable {
       
     else if (Math.random() >= 0.5)
       super.y += randgen(-10, 10);
+    
+    for (Thing c : thingsToCollide) {
+      if (this != c && isTouching(c)) {
+        vx = -vx;
+        vy = -vy;
+      }
+    }
   }
 
   int randgen(int min, int max) {

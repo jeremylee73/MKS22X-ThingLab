@@ -46,9 +46,13 @@ class Rock extends Thing {
 class LivingRock extends Rock implements Moveable {
 
   int[] eyecolor;
+  int vx = 5;
+  int vy = 5;
 
   LivingRock(float x, float y) {
     super(x, y);
+	int vx = 5;
+	int vy = 5;
 
     double rng = Math.random();
 
@@ -68,21 +72,24 @@ class LivingRock extends Rock implements Moveable {
 
   void move() {
     /* ONE PERSON WRITE THIS - Kevin */
-    if (super.x <= 30)
-      super.x += 20;
-    else if (super.x >= width - 30)
-      super.x -= 20;
+    // if (super.x <= 30)
+    //   super.x += vx;
+    // else if (super.x >= width - 30)
+    //   super.x -= vx;
+	//
+    // if (super.y <= 30)
+    //   super.y += vy;
+    // else if (super.y >= height - 30)
+    //   super.y -= vy;
 
-    if (super.y <= 30)
-      super.y += 20;
-    else if (super.y >= height - 30)
-      super.y -= 20;
+	x += vx;
+	y += vy;
 
-    if (Math.random() < 0.5)
-      super.x += random(-10, 10);
-
-    else if (Math.random() >= 0.5)
-      super.y += randgen(-10, 10);
+    // if (Math.random() < 0.5)
+    //   super.x += random(-10, 10);
+	//
+    // else if (Math.random() >= 0.5)
+      // super.y += randgen(-10, 10);
 
     for (Thing c : thingsToCollide) {
       if (this != c && isTouching(c)) {
@@ -95,7 +102,7 @@ class LivingRock extends Rock implements Moveable {
   int randgen(int min, int max) {
     Random r = new Random();
     return r.nextInt((max - min) + 1) + min;
-      super.y += random(-10, 10);
+      // super.y += random(-10, 10);
   }
 
   void display() {

@@ -85,6 +85,12 @@ class LivingRock extends Rock implements Moveable {
 	x += vx;
 	y += vy;
 
+	if (x >= width || x < 0){
+		vx = -vx;
+	}
+	if (y >= height || x < 0){
+		vy = -vy;
+	}
     // if (Math.random() < 0.5)
     //   super.x += random(-10, 10);
 	//

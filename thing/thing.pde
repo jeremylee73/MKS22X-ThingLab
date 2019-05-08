@@ -49,10 +49,53 @@ class LivingRock extends Rock implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS - Kevin Li */
-    super.x += random(-20, 20);
-    super.y += random(-20, 20);
+    /* ONE PERSON WRITE THIS - Kevin */
+    if (super.x <= 30) 
+      super.x += 20;
+    else if (super.x >= width - 30)
+      super.x -= 20;
+      
+    if (super.y <= 30)
+      super.y += 20;
+    else if (super.y >= height - 30)
+      super.y -= 20;
+      
+    if (Math.random() < 0.5)
+      super.x += randgen(-10, 10);
+      
+    else if (Math.random() >= 0.5)
+      super.y += randgen(-10, 10);
   }
+
+  int randgen(int min, int max) {
+    Random r = new Random();
+    return r.nextInt((max - min) + 1) + min;
+  }
+  
+  void display() {
+    super.display();
+    fill(255);
+    ellipse(this.x + 40, this.y + 40, 20, 20);
+    ellipse(this.x + 65, this.y + 65, 20, 20);
+  }
+  
+  /* :p forgot that this keeps refreshing, maybe this can be handy in the future? 
+  void eyeColorPicker() {
+    double rng = Math.random();
+    
+    if (rng < 0.25)
+      fill(40, 26, 13); //brown
+      
+    else if (rng >= 0.25 && rng < 0.5)
+      fill(85.5, 56.9, 0); //hazel
+      
+    else if (rng >= 0.5 && rng < 0.75)
+      fill(0, 96, 255); //blue, kinda
+      
+    else if (rng >= 0.75 && rng < 1)
+      fill(0, 179, 44); //green, kinda
+  }
+  */
 }
 
 class Ball extends Thing implements Moveable {

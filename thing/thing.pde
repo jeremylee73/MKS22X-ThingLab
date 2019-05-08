@@ -51,16 +51,16 @@ class LivingRock extends Rock implements Moveable {
     super(x, y);
 
     double rng = Math.random();
-    
+
     if (rng < 0.25)
       eyecolor = new int[] {40, 26, 13}; //brown
-      
+
     else if (rng >= 0.25 && rng < 0.5)
       eyecolor = new int[] {85, 56, 0}; //hazel
-      
+
     else if (rng >= 0.5 && rng < 0.75)
       eyecolor = new int[] {0, 96, 255}; //blue, kinda
-      
+
     else if (rng >= 0.75 && rng < 1)
       eyecolor = new int[] {0, 179, 44}; //green, kinda
 
@@ -68,23 +68,22 @@ class LivingRock extends Rock implements Moveable {
 
   void move() {
     /* ONE PERSON WRITE THIS - Kevin */
-    if (super.x <= 30) 
+    if (super.x <= 30)
       super.x += 20;
     else if (super.x >= width - 30)
       super.x -= 20;
-      
+
     if (super.y <= 30)
       super.y += 20;
     else if (super.y >= height - 30)
       super.y -= 20;
-      
+
     if (Math.random() < 0.5)
       super.x += random(-10, 10);
-      
+
     else if (Math.random() >= 0.5)
-<<<<<<< HEAD
       super.y += randgen(-10, 10);
-    
+
     for (Thing c : thingsToCollide) {
       if (this != c && isTouching(c)) {
         vx = -vx;
@@ -96,11 +95,9 @@ class LivingRock extends Rock implements Moveable {
   int randgen(int min, int max) {
     Random r = new Random();
     return r.nextInt((max - min) + 1) + min;
-=======
       super.y += random(-10, 10);
->>>>>>> 46404c603e45425e7f624c894eaf8109ba663089
   }
-  
+
   void display() {
     super.display();
     fill(255);
@@ -113,7 +110,7 @@ class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  
+
   float vx, vy;
   float r, g, b;
 

@@ -39,7 +39,7 @@ class Rock extends Thing {
   }
 
   void display() {
-    image(rock, x, y, 100, 100);
+    image(rock, x-50, y-50, 100, 100);
   }
 }
 
@@ -50,13 +50,8 @@ class LivingRock extends Rock implements Moveable {
 
   void move() {
     /* ONE PERSON WRITE THIS - Kevin Li */
-    super.x += randgen(-20, 20);
-    super.y += randgen(-20, 20);
-  }
-
-  int randgen(int min, int max) {
-    Random r = new Random();
-    return r.nextInt((max - min) + 1) + min;
+    super.x += random(-20, 20);
+    super.y += random(-20, 20);
   }
 }
 
@@ -66,7 +61,7 @@ class Ball extends Thing implements Moveable {
   float r, g, b;
 
   Ball(float x, float y) {
-    super(x, y, 20);
+    super(x, y, 10);
     vy = 0;
     vx = random(-10, 10);
     r = random(0, 255);
@@ -129,11 +124,13 @@ void setup() {
     thingsToCollide.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
+    thingsToCollide.add(r);
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(m);
     thingsToMove.add(m);
+    thingsToCollide.add(m);
   }
 }
 void draw() {

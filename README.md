@@ -7,5 +7,15 @@ May 6th, 2019 (initial)
 
 May 7th, 2019
 
+Rocks
 - Jeremy: Wrote randomizer for different rock types
-- 
+- Kevin: Eyes for moving rock (code got changed by someone else tho)
+Balls
+-
+-
+
+May 8th, 2019
+-
+-
+-
+-

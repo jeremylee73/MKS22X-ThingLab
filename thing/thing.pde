@@ -34,7 +34,7 @@ class Rock extends Thing {
   PImage rock;
 
   Rock(float x, float y) {
-    super(x, y, 50);
+    super(x, y, 40);
     rock = rocks[(int) Math.floor(Math.random() * 2)];
   }
 
@@ -46,13 +46,15 @@ class Rock extends Thing {
 class LivingRock extends Rock implements Moveable {
 
   int[] eyecolor;
-  int vx = 5;
-  int vy = 5;
+  float vx;
+  float vy;
 
   LivingRock(float x, float y) {
     super(x, y);
-	int vx = 5;
-	int vy = 5;
+
+    float theta = random(0., (float)(2*Math.PI));
+    vx = 5*(float)Math.cos(theta);
+    vy = 5*(float)Math.sin(theta);
 
     double rng = Math.random();
 
@@ -71,36 +73,28 @@ class LivingRock extends Rock implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS - Kevin */
-    // if (super.x <= 30)
-    //   super.x += vx;
-    // else if (super.x >= width - 30)
-    //   super.x -= vx;
-	//
-    // if (super.y <= 30)
-    //   super.y += vy;
-    // else if (super.y >= height - 30)
-    //   super.y -= vy;
 
-	x += vx;
-	y += vy;
+    x += vx;
+    y += vy;
 
-	if (x >= width || x < 0){
-		vx = -vx;
-	}
-	if (y >= height || x < 0){
-		vy = -vy;
-	}
-    // if (Math.random() < 0.5)
-    //   super.x += random(-10, 10);
-	//
-    // else if (Math.random() >= 0.5)
-      // super.y += randgen(-10, 10);
+    if (x >= width){
+      vx = -Math.abs(vx);
+    } else if (x < 0) {
+      vx = Math.abs(vx);
+    } else if (y >= height){
+      vy = -Math.abs(vy);
+    } else if (y < 0) {
+      vy = Math.abs(vy);
+    }
 
     for (Thing c : thingsToCollide) {
       if (this != c && isTouching(c)) {
-        vx = -vx;
-        vy = -vy;
+        float v = (float)Math.sqrt(Math.pow(vx, 2)+Math.pow(vy, 2));
+        float dx = x-c.x;
+        float dy = y-c.y;
+        float s = v/(float)Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2));
+        vx = dx*s;
+        vy = dy*s;
       }
     }
   }

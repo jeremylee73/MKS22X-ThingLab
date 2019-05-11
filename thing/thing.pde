@@ -116,6 +116,40 @@ class LivingRock extends Rock implements Moveable {
   }
 }
 
+//Since 3 styles of movement are required
+class LivingRock2 extends LivingRock {
+  float deg = (float)Math.random() * 360;
+  
+  LivingRock2(float x, float y) {
+    super(x, y);
+
+    double rng = Math.random();
+
+    if (rng < 0.25)
+      eyecolor = new int[] {40, 26, 13}; //brown
+
+    else if (rng >= 0.25 && rng < 0.5)
+      eyecolor = new int[] {85, 56, 0}; //hazel
+
+    else if (rng >= 0.5 && rng < 0.75)
+      eyecolor = new int[] {0, 96, 255}; //blue, kinda
+
+    else if (rng >= 0.75 && rng < 1)
+      eyecolor = new int[] {0, 179, 44}; //green, kinda
+  }
+  
+  void move() {
+    //Commented out: circular movement
+    //this.x = super.x + 10 * (float)Math.cos(deg);
+    //this.y = super.y + 10 * (float)Math.sin(deg);
+    
+    //Active code: polar graph curve
+    this.x = super.x + 20 * (float)(Math.cos(2 * deg) * Math.cos(deg));
+    this.y = super.y + 20 * (float)(Math.sin(2 * deg) * Math.sin(deg));
+    deg += 0.05;
+  }
+}
+
 class Ball extends Thing implements Moveable {
 
   float vx, vy;
@@ -189,6 +223,13 @@ void setup() {
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(m);
+    thingsToMove.add(m);
+    thingsToCollide.add(m);
+  }
+  
+  for (int i = 0; i < 3; i++) {
+    LivingRock m = new LivingRock2(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(m);
     thingsToMove.add(m);
     thingsToCollide.add(m);
